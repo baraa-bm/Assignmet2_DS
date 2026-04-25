@@ -35,7 +35,7 @@ The implementation follows the assignment requirements and demonstrates how bala
 ```txt
 Assignment2_DS/
 │
-├──main.cpp
+├──src/main.cpp
 ├── input.txt
 ├── output.txt
 ├── log.txt
@@ -60,66 +60,69 @@ Run:
 ```
 
 ---
+1. What happens when inserting into a full root?
+------------------------------------------------
 
-# Input File
+When inserting into a full root, the root must be split before the new value is inserted.
 
-The program reads operations from:
-
-```txt
-input.txt
-```
+Steps:
+- The middle key moves upward.
+- A new root is created.
+- The old root is divided into two child nodes.
+- The tree height increases by 1.
+- The new value is inserted into the correct child node.
 
 Example:
 
-```txt
-I 10
-I 20
-I 5
-S 20
-D 10
-SAVE
-RESTORE
-```
+Before split:
 
-Supported commands:
+    [10 20 30]
+
+After split:
+
+    Level 0: [20]
+    Level 1: [10] [30]
+
+The insertion then continues in the correct subtree.
+
+----------------------------------------
+
+2. Why is saving only keys not enough?
+------------------------------------------------
+
+Saving only keys is not enough because the exact tree structure would be lost.
+
+A 2–3–4 Tree depends on:
+- Which keys belong to the same node
+- Parent-child relationships
+- Whether nodes are leaf or internal nodes
+- Tree hierarchy and shape
+
+Two trees may contain identical keys but have different structures.
+
+If only keys are saved:
+- The original layout cannot be restored
+- The rebuilt tree may differ from the original
+
+----------------------------------------
+
+3. How do you distinguish node types in serialization?
+-------------------------------------------------------
+
+Node types are distinguished by storing metadata for every node.
+
+Each node saves:
+
+- Leaf status
+- Number of keys
+- Key values
 
 
-Insertion
+If the node is not a leaf:
+- Child nodes are serialized immediately after the parent
+- This preserves the exact structure during restoration
 
-Deletion
-
-Search
-
-Save (Save tree to snapshot.dat)
-
-Restore (Restore tree from snapshot.dat)
-
-
-
-Invalid lines are ignored.
-
----
-
-# Data Structure Overview
-
-A 2–3–4 Tree is a balanced multi-way search tree where each node may contain:
-
-- 1 key → 2 children
-- 2 keys → 3 children
-- 3 keys → 4 children
-
-The implementation uses:
-
-```txt
-Minimum degree t = 2
-```
-
-This means:
-
-- Maximum keys per node = 3
-- Maximum children per node = 4
-
----
+----------------------------------------
 
 # Implemented Functions
 
@@ -145,107 +148,8 @@ Displays the tree level-by-level.
 
 ---
 
-# Tree Visualization
-
-After every operation, the tree is displayed.
-
-Example:
-
-```txt
-Insert 6:
-Level 0: [10]
-Level 1: [5 6] [20]
-```
-
----
-
-# Split Counter
-
-The program tracks how many splits occur.
-
-Example:
-
-```txt
-Total splits = 2
-```
-
-This helps analyze tree balancing behavior.
-
----
-
-# Height Tracking
-
-Tree height is calculated after every operation.
-
-Example:
-
-```txt
-Height = 2
-```
-
----
-
-# Logging System
-
-The program creates:
-
-```txt
-log.txt
-```
-
-The log file stores:
-
-- Tree state after each operation
-- Split count
-- Height
-- Search results
-- Save/Restore operations
-
-This helps debugging and structural analysis.
-
----
-
-# Save / Restore Persistence
-
-The program supports persistence using:
-
-```txt
-snapshot.dat
-```
-
-## SAVE
-Stores the tree structure.
-
-## RESTORE
-Rebuilds the tree from the saved snapshot.
-
-Pointers are not stored directly because memory addresses change between executions.
-
-Instead, the tree is serialized using:
-
-- node type (leaf or non-leaf)
-- number of keys
-- key values
-
----
-
-# Reverse Reconstruction
 
 
-Steps:
-
-1. Store inserted values
-2. Build tree normally
-3. Rebuild using reverse insertion order
-4. Compare structure
-
-Compared metrics:
-
-- Height
-- Splits
-- Tree layout
-
----
 
 # Complexity Analysis
 
@@ -258,52 +162,3 @@ Compared metrics:
 Because the tree remains balanced, operations scale logarithmically.
 
 ---
-
-# Edge Cases Handled
-
-## Duplicate Insertions
-
-Duplicate values are ignored.
-
-Example:
-
-```txt
-I 10
-I 10
-```
-
-Second insertion is skipped.
-
----
-
-## Full Root Split
-
-When the root becomes full:
-
-- Root splits
-- Height increases
-- Middle key moves upward
-
-Example:
-
-Before:
-
-```txt
-[5 10 20]
-```
-
-After split:
-
-```txt
-      [10]
-     /    \
-   [5]    [20]
-```
-
----
-
-
-
-
-
-
