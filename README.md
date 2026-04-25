@@ -33,11 +33,9 @@ The implementation follows the assignment requirements and demonstrates how bala
 # Project Structure
 
 ```txt
-BTree-Assignment/
+Assignment2_DS/
 │
-├── src/
-│   └── main.cpp
-│
+├──main.cpp
 ├── input.txt
 ├── output.txt
 ├── log.txt
