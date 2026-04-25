@@ -1,0 +1,15 @@
+I 10
+I 20
+I 5
+I 6
+I 12
+I 30
+I 7
+I 17
+S 6
+S 100
+D 10
+SAVE
+I 40
+I 50
+RESTORE
