@@ -83,11 +83,18 @@ RESTORE
 
 Supported commands:
 
+
 Insertion
+
 Deletion
+
 Search
+
 Save (Save tree to snapshot.dat)
+
 Restore (Restore tree from snapshot.dat)
+
+
 
 Invalid lines are ignored.
 
