@@ -249,11 +249,11 @@ Compared metrics:
 
 # Complexity Analysis
 
--Search , O(log n) 
--Insert , O(log n) 
--Level Order Print , O(n) 
--Save , O(n) 
--Restore , O(n) 
+- Search , O(log n) 
+- Insert , O(log n) 
+- Level Order Print , O(n) 
+- Save , O(n) 
+- Restore , O(n) 
 
 Because the tree remains balanced, operations scale logarithmically.
 
