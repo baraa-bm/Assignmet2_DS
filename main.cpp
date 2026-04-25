@@ -139,6 +139,7 @@ public:
 
         return node;
     }
+
 };
 
 class BTree {
@@ -287,8 +288,6 @@ public:
             out << "TREE" << endl;
             root->save(out);
         }
-
-        out.close();
     }
 
     void restoreFromFile(string filename) {
@@ -302,14 +301,12 @@ public:
         string status;
         in >> status;
 
-        if (status == "EMPTY") {
+        if (status == "EMPTY")
             root = nullptr;
-        } else if (status == "TREE") {
+        else if (status == "TREE")
             root = BTreeNode::restore(in, t);
-        }
-
-        in.close();
     }
+
 };
 
 void printState(BTree &tree, ostream &out, string operation) {
@@ -334,7 +331,6 @@ int main() {
 
     string op;
     int x;
-
     int inserted[10000];
     int insertCount = 0;
 
@@ -345,8 +341,8 @@ int main() {
                 inserted[insertCount++] = x;
 
                 printState(tree, cout, "Insert " + to_string(x));
-                printState(output, "Insert " + to_string(x));
-                printState(log, "Insert " + to_string(x));
+                printState(tree, output, "Insert " + to_string(x));
+                printState(tree, log, "Insert " + to_string(x));
             }
         } else if (op == "S") {
             if (input >> x) {
@@ -367,8 +363,8 @@ int main() {
                 }
 
                 printState(tree, cout, "After Search");
-                printState(output, "After Search");
-                printState(log, "After Search");
+                printState(tree, output, "After Search");
+                printState(tree, log, "After Search");
             }
         } else if (op == "D") {
             if (input >> x) {
@@ -377,8 +373,8 @@ int main() {
                 log << "Delete " << x << ": Delete is optional and not implemented." << endl;
 
                 printState(tree, cout, "After Delete Attempt");
-                printState(output, "After Delete Attempt");
-                printState(log, "After Delete Attempt");
+                printState(tree, output, "After Delete Attempt");
+                printState(tree, log, "After Delete Attempt");
             }
         } else if (op == "SAVE") {
             tree.saveToFile("snapshot.dat");
@@ -394,8 +390,8 @@ int main() {
             log << "Tree restored from snapshot.dat" << endl;
 
             printState(tree, cout, "After Restore");
-            printState(output, "After Restore");
-            printState(log, "After Restore");
+            printState(tree, output, "After Restore");
+            printState(tree, log, "After Restore");
         } else {
             string restOfLine;
             getline(input, restOfLine);

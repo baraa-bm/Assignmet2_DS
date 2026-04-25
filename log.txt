@@ -1,0 +1,95 @@
+Insert 10:
+Level 0: [10] 
+Total splits = 0
+Height = 1
+------------------------
+Insert 20:
+Level 0: [10 20] 
+Total splits = 0
+Height = 1
+------------------------
+Insert 5:
+Level 0: [5 10 20] 
+Total splits = 0
+Height = 1
+------------------------
+Insert 6:
+Level 0: [10] 
+Level 1: [5 6] [20] 
+Total splits = 1
+Height = 2
+------------------------
+Insert 12:
+Level 0: [10] 
+Level 1: [5 6] [12 20] 
+Total splits = 1
+Height = 2
+------------------------
+Insert 30:
+Level 0: [10] 
+Level 1: [5 6] [12 20 30] 
+Total splits = 1
+Height = 2
+------------------------
+Insert 7:
+Level 0: [10] 
+Level 1: [5 6 7] [12 20 30] 
+Total splits = 1
+Height = 2
+------------------------
+Insert 17:
+Level 0: [10 20] 
+Level 1: [5 6 7] [12 17] [30] 
+Total splits = 2
+Height = 2
+------------------------
+Search 6: Found
+After Search:
+Level 0: [10 20] 
+Level 1: [5 6 7] [12 17] [30] 
+Total splits = 2
+Height = 2
+------------------------
+Search 100: Not Found
+After Search:
+Level 0: [10 20] 
+Level 1: [5 6 7] [12 17] [30] 
+Total splits = 2
+Height = 2
+------------------------
+Delete 10: Delete is optional and not implemented.
+After Delete Attempt:
+Level 0: [10 20] 
+Level 1: [5 6 7] [12 17] [30] 
+Total splits = 2
+Height = 2
+------------------------
+Tree saved to snapshot.dat
+Insert 40:
+Level 0: [10 20] 
+Level 1: [5 6 7] [12 17] [30 40] 
+Total splits = 2
+Height = 2
+------------------------
+Insert 50:
+Level 0: [10 20] 
+Level 1: [5 6 7] [12 17] [30 40 50] 
+Total splits = 2
+Height = 2
+------------------------
+Tree restored from snapshot.dat
+After Restore:
+Level 0: [10 20] 
+Level 1: [5 6 7] [12 17] [30] 
+Total splits = 2
+Height = 2
+------------------------
+
+Reverse Reconstruction Test
+Reverse Tree:
+Level 0: [17] 
+Level 1: [7] [40] 
+Level 2: [5 6] [10 12] [20 30] [50] 
+Total splits = 4
+Height = 3
+------------------------
